@@ -32,6 +32,12 @@ public class SearchPage {
         wait.until(ExpectedConditions.visibilityOf(searchBox)).sendKeys(product);
     }
 
+    public void clickCancelButton(String appName){
+        By CancelButtonLoc = CommonUtils.getSearchPageLocators(appName,"cancel");
+        WebElement CancelBtn = driver.findElement(CancelButtonLoc);
+        CancelBtn.click();
+    }
+
     public void generalSearchFlow(String appName){
         SearchPage searchPage =new SearchPage(driver, wait);
         String product = switch (appName) {
@@ -44,12 +50,26 @@ public class SearchPage {
             homePageTamimi.clickHomeButton();
         }
         else{
-            SearchPageVijetha searchPageVijetha =new SearchPageVijetha(driver, wait);
+            SearchPageVijetha searchPageVijetha =new SearchPageVijetha(driver);
             for(int i=0; i<2; i++) {
                 searchPageVijetha.clickBackButton();
             }
         }
         searchPage.clickSearchBar(appName);
+        searchPage.enterProduct(appName, product);
+    }
+
+    public void productSearchFlow(String appName){
+        String product = switch (appName) {
+            case "Tamimi" -> "French Cheese Potato Chips";
+            case "Vijetha" -> "Bingo Hashtags Spicy Masala";
+            default -> "";
+        };
+        SearchPage searchPage =new SearchPage(driver, wait);
+        searchPage.clickCancelButton(appName);
+        if(appName.equals("Tamimi")){
+            searchPage.clickSearchBar(appName);
+        }
         searchPage.enterProduct(appName, product);
     }
 
@@ -97,5 +117,17 @@ public class SearchPage {
                 break;
         }
         return result1 && result2;
+    }
+
+    public boolean verifyProduct(String appName){
+        String product = switch (appName) {
+            case "Tamimi" -> "French Cheese Potato Chips";
+            case "Vijetha" -> "Bingo Hashtags Spicy Masala";
+            default -> "";
+        };
+        By SpecificProductLoc = CommonUtils.getProductPageLocators(appName,"SpecificProduct");
+        WebElement specificProduct = driver.findElement(SpecificProductLoc);
+        String specificProductName = specificProduct.getText();
+        return specificProductName.contains(product);
     }
 }
