@@ -1,6 +1,6 @@
 package com.zs.locators;
-import org.openqa.selenium.By;
 
+import org.openqa.selenium.By;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +28,7 @@ public class TamimiLocators {
         //home page
         homePageLocators.put("department", By.xpath("//XCUIElementTypeButton[@name='FRUITS & VEGETABLES']/XCUIElementTypeImage[2]"));
         homePageLocators.put("homeIcon", By.xpath("//XCUIElementTypeTabBar[@name='Tab Bar']/XCUIElementTypeButton[1]"));
-        homePageLocators.put("searchBar", By.xpath("//XCUIElementTypeTextField[@value='What are you looking for?']"));
+        homePageLocators.put("searchIcon", By.xpath("//XCUIElementTypeTextField[@value='What are you looking for?']"));
         homePageLocators.put("notNow", By.xpath("//XCUIElementTypeButton[@name='Not Now']"));
 
         //Department page
