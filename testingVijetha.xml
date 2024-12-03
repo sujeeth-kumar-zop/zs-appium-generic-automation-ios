@@ -6,7 +6,7 @@
         <classes>
             <class name="test.LoginTest"/>
             <class name="test.AddToCartTest"/>
-<!--            <class name="test.SearchTest"/>-->
+            <class name="test.SearchTest"/>
 <!--            <class name="test.SearchProductTest"/>-->
         </classes>
     </test>
