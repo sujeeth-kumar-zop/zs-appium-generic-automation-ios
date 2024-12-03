@@ -1,6 +1,5 @@
 package test;
 
-import com.zs.pages.common.HomePage;
 import com.zs.pages.tamimi.HomePageTamimi;
 import com.zs.pages.vijetha.HomePageVijetha;
 import config.BaseTest;
@@ -17,16 +16,19 @@ public class AddToCartTest extends BaseTest{
     @Parameters("appName")
     public void addToCart(@Optional String appName) throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        HomePage homePage = new HomePage(driver, wait);
-        if(appName.equals("Tamimi")){
-            HomePageTamimi homePageTamimi = new HomePageTamimi(driver, wait);
-            homePageTamimi.addToCartFlow();
-            assertTrue(homePageTamimi.verifyProduct());
-        }
-        else{
-            HomePageVijetha homePageVijetha = new HomePageVijetha(driver, wait);
-            homePageVijetha.addToCartFlow();
-            assertTrue(homePageVijetha.verifyProduct());
+        switch (appName){
+            case "Tamimi":
+                HomePageTamimi homePageTamimi = new HomePageTamimi(driver, wait);
+                homePageTamimi.addToCartFlow();
+                assertTrue(homePageTamimi.verifyProduct());
+                break;
+            case "Vijetha":
+                HomePageVijetha homePageVijetha = new HomePageVijetha(driver, wait);
+                homePageVijetha.addToCartFlow();
+                assertTrue(homePageVijetha.verifyProduct());
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid app name: " + appName);
         }
     }
 
