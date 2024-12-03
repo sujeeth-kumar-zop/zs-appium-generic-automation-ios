@@ -1,6 +1,6 @@
 package com.zs.locators;
-import org.openqa.selenium.By;
 
+import org.openqa.selenium.By;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +35,6 @@ public class VijethaLocators {
 
         //product page locators
         productPageLocators.put("ProductNameBeforeAdd", By.xpath("//XCUIElementTypeStaticText[@name='Tomato Local - Tamatar-500 gm']"));
-        productPageLocators.put("ProductPriceBeforeAdd", By.xpath("//XCUIElementTypeStaticText[@name='₹ 32.50']"));
         productPageLocators.put("addButton", By.xpath("(//XCUIElementTypeButton[@name='Add'])[2]"));
         productPageLocators.put("backButton", By.xpath("//XCUIElementTypeButton[@name='curved_chevron']"));
         productPageLocators.put("product", By.xpath("//XCUIElementTypeStaticText[@name='Tomato Local - Tamatar']"));
@@ -49,18 +48,14 @@ public class VijethaLocators {
         productListsLocators.put("Product3", By.xpath("//XCUIElementTypeStaticText[@name='Orange Cloth Pegs Unipeg Pack']"));
         productListsLocators.put("Product4", By.xpath("//XCUIElementTypeStaticText[@name='Avni Sweet Orange']"));
         productListsLocators.put("Product5", By.xpath("//XCUIElementTypeStaticText[@name='Glucovita Bolts Orange']"));
-        productListsLocators.put("Product6", By.xpath("//XCUIElementTypeStaticText[@name='Tic Tac Orange']"));
-        productListsLocators.put("Product7", By.xpath("//XCUIElementTypeStaticText[@name='Britannia Cake Orange']"));
-        productListsLocators.put("Product8", By.xpath("//XCUIElementTypeStaticText[@name='Dukes Waffy Orange']"));
 
         //search page locators
-        searchPageLocators.put("searchBar", By.xpath("//XCUIElementTypeTextField[@value='Search for product, brand…']"));
+        searchPageLocators.put("search", By.xpath("//XCUIElementTypeTextField[@value='Search for product, brand…']"));
         searchPageLocators.put("back", By.xpath("//XCUIElementTypeButton[@name='curved_chevron']"));
         searchPageLocators.put("cancel", By.xpath("//XCUIElementTypeButton[@name='multiply']"));
 
         //cart page locators
         cartPageLocators.put("ProductNameAfterAdd", By.xpath("//XCUIElementTypeStaticText[@name='Tomato Local - Tamatar - 500 gm']"));
-        cartPageLocators.put("ProductPriceAfterAdd", By.xpath("(//XCUIElementTypeStaticText[@name='₹ 32.50'])[1]"));
     }
 
     public static By getLoginLocator(String locatorName) {
