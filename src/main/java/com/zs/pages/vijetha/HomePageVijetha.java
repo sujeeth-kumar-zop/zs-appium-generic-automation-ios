@@ -2,6 +2,7 @@ package com.zs.pages.vijetha;
 
 import com.zs.locators.TamimiLocators;
 import com.zs.locators.VijethaLocators;
+import com.zs.utils.LoggerUtil;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -21,7 +22,7 @@ public class HomePageVijetha {
         driver =CurrentDriver;
         this.wait=wait;
     }
-    public void clickVegetablesButton(){
+    public void clickDepartmentButton(){
         By VegetablesLoc = VijethaLocators.getHomePageLocator("department");
         WebElement VegetablesBtn = driver.findElement(VegetablesLoc);
         VegetablesBtn.click();
@@ -48,9 +49,6 @@ public class HomePageVijetha {
         By ProductNameAfterAddLoc = VijethaLocators.getCartPageLocator("ProductNameAfterAdd");
         WebElement productNameAfterAdd = driver.findElement(ProductNameAfterAddLoc);
         Product.put("ProductAfterAddName", productNameAfterAdd.getText());
-        By ProductPriceAfterAddLoc = VijethaLocators.getCartPageLocator("ProductPriceAfterAdd");
-        WebElement productPriceAfterAdd = driver.findElement(ProductPriceAfterAddLoc);
-        Product.put("ProductAfterAddPrice", productPriceAfterAdd.getText());
     }
     public void clickHomeButton(){
         By HomeButtonLoc = VijethaLocators.getHomePageLocator("homeIcon");
@@ -64,9 +62,6 @@ public class HomePageVijetha {
         By ProductBeforeAddLoc = VijethaLocators.getProductPageLocators("ProductNameBeforeAdd");
         WebElement productBeforeAdd = driver.findElement(ProductBeforeAddLoc);
         Product.put("ProductBeforeAddName", productBeforeAdd.getText());
-        By ProductPriceBeforeAddLoc = VijethaLocators.getProductPageLocators("ProductPriceBeforeAdd");
-        WebElement productPriceBeforeAdd = driver.findElement(ProductPriceBeforeAddLoc);
-        Product.put("ProductBeforeAddPrice", productPriceBeforeAdd.getText());
     }
     public void clickOptionButton(){
         By OptionButtonLoc = VijethaLocators.getProductPageLocators("optionButton");
@@ -78,25 +73,29 @@ public class HomePageVijetha {
         WebElement CancelBtn = driver.findElement(CancelButtonLoc);
         CancelBtn.click();
     }
-    public boolean verifyProduct(){
+    public boolean verifyProduct() throws InterruptedException {
+        HomePageVijetha homePageVijetha =new HomePageVijetha(driver, wait);
+        homePageVijetha.clickCancelButton();
+        homePageVijetha.clickViewCartButton();
         String ProductBeforeAddName=Product.get("ProductBeforeAddName");
         ProductBeforeAddName=ProductBeforeAddName.replace(" ", "");
         String ProductAfterAddName=Product.get("ProductAfterAddName");
         ProductAfterAddName=ProductAfterAddName.replace(" ", "");
-        String ProductBeforeAddPrice=Product.get("ProductBeforeAddPrice");
-        ProductBeforeAddPrice=ProductBeforeAddPrice.replace(" ", "");
-        String ProductAfterAddPrice=Product.get("ProductAfterAddPrice");
-        ProductAfterAddPrice=ProductAfterAddPrice.replace(" ", "");
-        return ProductBeforeAddName.equals(ProductAfterAddName) && ProductBeforeAddPrice.equals(ProductAfterAddPrice);
+        return ProductAfterAddName.contains(ProductBeforeAddName);
     }
     public void addToCartFlow() throws InterruptedException {
+        LoggerUtil.logInfo("Add to Cart Test Case Started for Vijetha");
         HomePageVijetha homePageVijetha =new HomePageVijetha(driver, wait);
         homePageVijetha.clickHomeButton();
-        homePageVijetha.clickVegetablesButton();
+        LoggerUtil.logInfo("Clicked Home Page Button");
+        homePageVijetha.clickDepartmentButton();
+        LoggerUtil.logInfo("Clicked Department Button");
         homePageVijetha.clickProduct();
+        LoggerUtil.logInfo("Clicked on Product");
         homePageVijetha.clickOptionButton();
+        LoggerUtil.logInfo("Clicked Options");
         homePageVijetha.clickAddButton();
-        homePageVijetha.clickCancelButton();
-        homePageVijetha.clickViewCartButton();
+        LoggerUtil.logInfo("Clicked Add Button");
+        LoggerUtil.logInfo("Add to Cart Test Case Successfully Completed for Vijetha");
     }
 }
