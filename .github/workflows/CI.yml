@@ -10,6 +10,7 @@ jobs:
 
     runs-on: macos-latest
 
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -40,8 +41,7 @@ jobs:
           appium &>/dev/null &
 
       - name: Run appium iOS tests
-        run: sudo xcode-select --switch /Applications/Xcode.app
-             xcrun simctl boot "iPhone 16 Pro"
+        uses: reactivecircus/ios-emulator-runner@v2
         with:
           platform-version: 18.1
           device: iPhone 16 Pro
