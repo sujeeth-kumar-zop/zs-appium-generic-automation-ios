@@ -23,7 +23,7 @@ public class TamimiLocators {
         loginLocators.put("loginBtn", By.xpath("//XCUIElementTypeButton[@name='Login']"));
 
         //profile page locators
-        profileLocators.put("username", By.xpath("//XCUIElementTypeStaticText[@name='Mr. Ahmed I']"));
+        profileLocators.put("username", By.xpath("//XCUIElementTypeStaticText[@name='Mr. Ahmed Khan']"));
 
         //home page
         homePageLocators.put("department", By.xpath("//XCUIElementTypeButton[@name='FRUITS & VEGETABLES']/XCUIElementTypeImage[2]"));
@@ -52,6 +52,20 @@ public class TamimiLocators {
         productPageLocators.put("ProductNameAfterAdd", By.xpath("//XCUIElementTypeStaticText[@name='Red Onions - 1.0 kg']"));
         productPageLocators.put("ProductPriceAfterAdd", By.xpath("//XCUIElementTypeStaticText[@name='8.95 SAR']"));
         productPageLocators.put("SpecificProduct", By.xpath("//XCUIElementTypeStaticText[@name='French Cheese Potato Chips']"));
+        productPageLocators.put("CheckOut", By.xpath("//XCUIElementTypeButton[@name='CHECKOUT']"));
+        productPageLocators.put("ProductIncrement", By.xpath("//XCUIElementTypeButton[@name='increaseQuantity_scarlet']"));
+        productPageLocators.put("SubTotal", By.xpath("//XCUIElementTypeStaticText[@name='46.68 SAR']"));
+        productPageLocators.put("SelectSubstitution", By.xpath("//XCUIElementTypeButton[@name='Select Substitution']/XCUIElementTypeButton/XCUIElementTypeOther"));
+        productPageLocators.put("CallForSubstitution", By.xpath("//XCUIElementTypeButton[@name='Call for Substitution']"));
+        productPageLocators.put("EndOfPage", By.xpath("//XCUIElementTypeStaticText[@name='Delivery Charges (Inc VAT)']"));
+        productPageLocators.put("DebitCard", By.xpath("//XCUIElementTypeStaticText[@name='mada Debit Card']"));
+        productPageLocators.put("CardSelection", By.xpath("//XCUIElementTypeStaticText[@name='xxxx 2387']"));
+        productPageLocators.put("PlaceOrder", By.xpath("//XCUIElementTypeButton[@name='PLACE ORDER']"));
+        productPageLocators.put("SuccessOrderPlace", By.xpath("//XCUIElementTypeStaticText[@name='Order placed successfully!']"));
+        productPageLocators.put("ProductQuantity", By.xpath("//XCUIElementTypeButton[@name='20']"));
+        productPageLocators.put("ElementAppearance", By.xpath("//XCUIElementTypeStaticText[@name='Select your preferred day']"));
+        productPageLocators.put("AlertMessage", By.xpath("//XCUIElementTypeStaticText[@name='Alert']"));
+        productPageLocators.put("AlertOk", By.xpath("//XCUIElementTypeButton[@name='OK']"));
     }
 
     public static By getLoginLocator(String locatorName) {
