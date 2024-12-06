@@ -1,0 +1,57 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - "**"
+
+jobs:
+  Maven_Build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Check Node.js version
+        run: node --version
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup appium
+        run: |
+          npm install -g appium@2.12.1
+          appium driver install XCUITest
+          appium driver list --installed
+          appium -v
+          appium &>/dev/null &
+
+      - name: Run appium iOS tests
+        uses: reactivecircus/ios-emulator-runner@v2
+        with:
+          platform-version: 18.1
+          device: iPhone 16 Pro
+          sdk: iOS
+          script: mvn clean test -Pios
+
+      - name: Build project with Maven
+        run: mvn test -DsuiteXmlFiles=testngTamimi.xml -DappName=Tamimi
+
+      - name: Upload Extent Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: Extent Report
+          path: reports/ExtentReport.html
