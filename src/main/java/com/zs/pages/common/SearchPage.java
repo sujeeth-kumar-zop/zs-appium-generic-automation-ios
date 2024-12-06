@@ -3,6 +3,7 @@ package com.zs.pages.common;
 import com.zs.pages.tamimi.HomePageTamimi;;
 import com.zs.pages.vijetha.SearchPageVijetha;
 import com.zs.utils.CommonUtils;
+import com.zs.utils.LoggerUtil;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -39,6 +40,7 @@ public class SearchPage {
     }
 
     public void generalSearchFlow(String appName){
+        LoggerUtil.logInfo("General Product Test Case Started for" + appName);
         SearchPage searchPage =new SearchPage(driver, wait);
         String product = switch (appName) {
             case "Tamimi" -> "Tomato";
@@ -48,6 +50,7 @@ public class SearchPage {
         if(appName.equals("Tamimi")){
             HomePageTamimi homePageTamimi =new HomePageTamimi(driver, wait);
             homePageTamimi.clickHomeButton();
+            LoggerUtil.logInfo("Home Button clicked");
         }
         else{
             SearchPageVijetha searchPageVijetha =new SearchPageVijetha(driver);
@@ -56,10 +59,13 @@ public class SearchPage {
             }
         }
         searchPage.clickSearchBar(appName);
+        LoggerUtil.logInfo("Search Bar Clicked");
         searchPage.enterProduct(appName, product);
+        LoggerUtil.logInfo("Product Entered and Search Successfully Completed for" + appName);
     }
 
     public void productSearchFlow(String appName){
+        LoggerUtil.logInfo("Specific Product Test Case Started for " + appName);
         String product = switch (appName) {
             case "Tamimi" -> "French Cheese Potato Chips";
             case "Vijetha" -> "Bingo Hashtags Spicy Masala";
@@ -69,8 +75,10 @@ public class SearchPage {
         searchPage.clickCancelButton(appName);
         if(appName.equals("Tamimi")){
             searchPage.clickSearchBar(appName);
+            LoggerUtil.logInfo("Search Bar Clicked");
         }
         searchPage.enterProduct(appName, product);
+        LoggerUtil.logInfo("Product Entered and Search Successfully Completed for " + appName);
     }
 
     public static int generateRandomNumber() {
@@ -116,7 +124,11 @@ public class SearchPage {
                 result2=Product5Name.contains(product);
                 break;
         }
-        return result1 && result2;
+        if(result1 && result2){
+            LoggerUtil.logInfo("LogiN Test Case Completed Successfully for " + appName);
+            return true;
+        }
+        return false;
     }
 
     public boolean verifyProduct(String appName){
@@ -128,6 +140,10 @@ public class SearchPage {
         By SpecificProductLoc = CommonUtils.getProductPageLocators(appName,"SpecificProduct");
         WebElement specificProduct = driver.findElement(SpecificProductLoc);
         String specificProductName = specificProduct.getText();
-        return specificProductName.contains(product);
+        if(specificProductName.contains(product)){
+            LoggerUtil.logInfo("Login Test Case Completed Successfully for " + appName);
+            return true;
+        }
+        return false;
     }
 }
