@@ -2,12 +2,17 @@
 <suite name="Tamimi Test Suite" >
     <parameter name="appName" value="Tamimi"/>
     <parameter name="appFile" value="/Users/raramuri/Library/Developer/Xcode/DerivedData/Consumer-afgkhkbrzkqgmqfxsrosirjvmpgp/Build/Products/Debug-iphonesimulator/Scarlet.app"/>
+    <listeners>
+        <listener class-name="com.zs.utils.ExtentReport"/>
+    </listeners>
     <test name="Test">
         <classes>
             <class name="test.LoginTest"/>
             <class name="test.AddToCartTest"/>
             <class name="test.SearchTest"/>
            <class name="test.SearchProductTest"/>
+            <class name="test.IncrementProductQuantityInCartTest"/>
+            <class name="test.CheckOutDebitCardTest"/>
         </classes>
     </test>
 </suite>
