@@ -1,6 +1,7 @@
 package com.zs.pages.tamimi;
 
 import com.zs.locators.TamimiLocators;
+import com.zs.utils.LoggerUtil;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -21,7 +22,7 @@ public class HomePageTamimi {
         this.wait=wait;
     }
 
-    public void clickFruitsAndVegetables(){
+    public void clickDepartmentButton(){
         By FruitsAndVegetablesLoc = TamimiLocators.getHomePageLocator("department");
         WebElement FruitsAndVegetablesBtn = driver.findElement(FruitsAndVegetablesLoc);
         FruitsAndVegetablesBtn.click();
@@ -55,6 +56,8 @@ public class HomePageTamimi {
         HomeBtn.click();
     }
     public boolean verifyProduct(){
+        HomePageTamimi homePageTamimi =new HomePageTamimi(driver, wait);
+        homePageTamimi.clickCartButton();
         String ProductBeforeAddName=Product.get("ProductBeforeAddName");
         ProductBeforeAddName=ProductBeforeAddName.replace(" ", "");
         String ProductAfterAddName=Product.get("ProductAfterAddName");
@@ -63,15 +66,18 @@ public class HomePageTamimi {
         ProductBeforeAddPrice=ProductBeforeAddPrice.replace(" ", "");
         String ProductAfterAddPrice=Product.get("ProductAfterAddPrice");
         ProductAfterAddPrice=ProductAfterAddPrice.replace(" ", "");
+        LoggerUtil.logInfo("Add to Cart Test Case Successfully Completed for Tamimi");
         return ProductBeforeAddName.equals(ProductAfterAddName) && ProductBeforeAddPrice.equals(ProductAfterAddPrice);
     }
 
     public void addToCartFlow(){
+        LoggerUtil.logInfo("Add to Cart Test Case Started for Tamimi");
         HomePageTamimi homePageTamimi =new HomePageTamimi(driver, wait);
         homePageTamimi.clickHomeButton();
-        homePageTamimi.clickFruitsAndVegetables();
+        LoggerUtil.logInfo("Clicked Home Page Button");
+        homePageTamimi.clickDepartmentButton();
+        LoggerUtil.logInfo("Clicked Department Button");
         homePageTamimi.clickAddButton();
-        homePageTamimi.clickCartButton();
-
+        LoggerUtil.logInfo("Clicked Add Button");
     }
 }
