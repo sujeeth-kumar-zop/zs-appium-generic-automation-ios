@@ -40,7 +40,8 @@ jobs:
           appium &>/dev/null &
 
       - name: Run appium iOS tests
-        uses: reactivecircus/ios-emulator-runner@v2
+        run: sudo xcode-select --switch /Applications/Xcode.app
+             xcrun simctl boot "iPhone 16 Pro"
         with:
           platform-version: 18.1
           device: iPhone 16 Pro
