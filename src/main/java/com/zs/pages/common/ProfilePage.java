@@ -20,7 +20,7 @@ public class ProfilePage {
         By usernameLoc = CommonUtils.getProfileLocator(appName, "username");
         WebElement username = driver.findElement(usernameLoc);
         if(username.isDisplayed()){
-            LoggerUtil.logInfo("LogiN Test Case Completed Successfully for " + appName);
+            LoggerUtil.logInfo("Login Test Case Completed Successfully for " + appName);
             return true;
         }
         return false;
