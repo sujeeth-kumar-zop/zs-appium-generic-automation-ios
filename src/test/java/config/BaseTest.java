@@ -25,7 +25,6 @@ public class BaseTest {
         caps.setCapability("automationName", "XCUITest");
         caps.setCapability("noReset", true);
         caps.setCapability("app", appFile);
-//        logger.info("App name: {}", appName);
         driver = new IOSDriver(new URL("http://127.0.0.1:4723"), caps);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         return driver;
