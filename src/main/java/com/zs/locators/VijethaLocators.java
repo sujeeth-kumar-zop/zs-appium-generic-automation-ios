@@ -41,6 +41,10 @@ public class VijethaLocators {
         productPageLocators.put("optionButton", By.xpath("//XCUIElementTypeButton[@name='2 option more']"));
         productPageLocators.put("cancelButton", By.xpath("//XCUIElementTypeButton[@name='multiply']"));
         productPageLocators.put("SpecificProduct", By.xpath("//XCUIElementTypeStaticText[@name='Bingo Hashtags Spicy Masala']"));
+        productPageLocators.put("IncrementProduct", By.xpath("//XCUIElementTypeButton[@name='1']"));
+        productPageLocators.put("OkayButton", By.xpath("//XCUIElementTypeButton[@name='Okay']"));
+        productPageLocators.put("ProductBack", By.xpath("(//XCUIElementTypeButton[@name='curved_chevron'])[1]"));
+
 
         //Product list
         productListsLocators.put("Product1", By.xpath("//XCUIElementTypeStaticText[@name='Orange Cloth Pegs Uniclip Pack']"));
@@ -53,6 +57,8 @@ public class VijethaLocators {
         searchPageLocators.put("search", By.xpath("//XCUIElementTypeTextField[@value='Search for product, brand…']"));
         searchPageLocators.put("back", By.xpath("//XCUIElementTypeButton[@name='curved_chevron']"));
         searchPageLocators.put("cancel", By.xpath("//XCUIElementTypeButton[@name='multiply']"));
+        searchPageLocators.put("CentralPage", By.xpath("//XCUIElementTypeOther[@name='CenterPageView']/XCUIElementTypeOther[1]"));
+        searchPageLocators.put("homeIcon", By.xpath("//XCUIElementTypeTabBar[@name='Tab Bar']/XCUIElementTypeButton[1]"));
 
         //cart page locators
         cartPageLocators.put("ProductNameAfterAdd", By.xpath("//XCUIElementTypeStaticText[@name='Tomato Local - Tamatar - 500 gm']"));
