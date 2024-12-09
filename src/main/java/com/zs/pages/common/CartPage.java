@@ -96,8 +96,6 @@ public class CartPage {
     public void incrementProductFlow(String appName) throws InterruptedException {
         LoggerUtil.logInfo("Increment Product Count in Cart Test Case Started for " + appName);
         CartPage cartPage = new CartPage(driver, wait);
-        SearchPage searchPage =new SearchPage(driver, wait);
-        searchPage.clickCancelButton(appName);
         if(appName.equals("Vijetha")){
             Dimension screenSize = driver.manage().window().getSize();
             int centerX = screenSize.width / 2;
