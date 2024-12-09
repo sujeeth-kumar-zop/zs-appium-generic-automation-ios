@@ -66,7 +66,10 @@ public class CartPage {
             case "Vijetha":
                 CartPage cartPage = new CartPage(driver, wait);
                 By IncrementButtonLoc = CommonUtils.getProductPageLocators(appName,"IncrementProduct");
-                WebElement IncrementBtn = driver.findElement(IncrementButtonLoc);
+                //Thread.sleep(5000);
+                By PlaceOrderLoc = CommonUtils.getCartPageLocators(appName,"PlaceOrder");
+                WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(PlaceOrderLoc));
+                WebElement IncrementBtn = wait.until(ExpectedConditions.elementToBeClickable(IncrementButtonLoc));
                 IncrementBtn.click();
                 PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
                 Sequence swipe = new Sequence(finger, 0);
