@@ -1,19 +1,17 @@
 package com.zs.pages.common;
 
+import com.zs.locators.TamimiLocators;
 import com.zs.utils.CommonUtils;
 import com.zs.utils.LoggerUtil;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.Arrays;
 import java.util.List;
 
 public class CheckOut {
@@ -32,6 +30,12 @@ public class CheckOut {
         By callForSubstitutionBtnLoc = CommonUtils.getProductPageLocators(appName, "CallForSubstitution");
         WebElement callForSubstitutionBtn = driver.findElement(callForSubstitutionBtnLoc);
         callForSubstitutionBtn.click();
+    }
+
+    public void clickBackButton(){
+        By BackButtonLoc = TamimiLocators.getCartPageLocators("BackButton");
+        WebElement BackButtonBtn = driver.findElement(BackButtonLoc);
+        BackButtonBtn.click();
     }
 
     public void clickCheckOutBtn(String appName){
@@ -79,6 +83,12 @@ public class CheckOut {
         cardSelectionBtn.click();
     }
 
+    public void CashOnDeliverySelection(String appName){
+        By CODLoc = CommonUtils.getProductPageLocators(appName, "COD");
+        WebElement CODBtn = driver.findElement(CODLoc);
+        CODBtn.click();
+    }
+
     public void clickPlaceOrder(String appName){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         long startTime = System.currentTimeMillis();
@@ -102,7 +112,7 @@ public class CheckOut {
     }
 
     public void checkOutFlow(String appName) {
-        LoggerUtil.logInfo("Check Out Test Case Started for " + appName);
+        LoggerUtil.logInfo("Check Out Using Debit Card Test Case Started for " + appName);
         CheckOut checkOut = new CheckOut(driver, wait);
         checkOut.clickSelectSubstitutionBtn(appName);
         LoggerUtil.logInfo("Selection for Substitution Completed");
@@ -111,6 +121,19 @@ public class CheckOut {
         checkOut.scrollToEnd(appName);
         LoggerUtil.logInfo("Scroll down for Selection of Payment Method done");
         checkOut.debitCardSelection(appName);
+        LoggerUtil.logInfo("Debit Card Selected");
+        checkOut.clickPlaceOrder(appName);
+        LoggerUtil.logInfo("Place Order Button Clicked");
+    }
+
+    public void checkOutFlowCOD(String appName) {
+        LoggerUtil.logInfo("Check Out using COD Test Case Started for " + appName);
+        CheckOut checkOut = new CheckOut(driver, wait);
+        checkOut.clickCheckOutBtn(appName);
+        LoggerUtil.logInfo("Check Out Button Clicked");
+        checkOut.scrollToEnd(appName);
+        LoggerUtil.logInfo("Scroll down for Selection of Payment Method done");
+        checkOut.CashOnDeliverySelection(appName);
         LoggerUtil.logInfo("Debit Card Selected");
         checkOut.clickPlaceOrder(appName);
         LoggerUtil.logInfo("Place Order Button Clicked");
