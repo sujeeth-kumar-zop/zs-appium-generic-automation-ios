@@ -1,6 +1,7 @@
 package test;
 
 import com.zs.pages.common.CartPage;
+import com.zs.pages.common.SearchPage;
 import config.BaseTest;
 import com.zs.utils.ExtentReport;
 import com.zs.utils.LoggerUtil;
@@ -20,6 +21,8 @@ public class IncrementProductQuantityInCartTest extends BaseTest {
         LoggerUtil.setExtentTest(ExtentReport.getTest());
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         CartPage cartPage = new CartPage(driver, wait);
+        SearchPage searchPage =new SearchPage(driver, wait);
+        searchPage.clickCancelButton(appName);
         cartPage.incrementProductFlow(appName);
         assertTrue(cartPage.verifyIncrement(appName));
     }
