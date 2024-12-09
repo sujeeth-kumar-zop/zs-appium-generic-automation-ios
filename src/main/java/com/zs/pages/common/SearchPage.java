@@ -125,7 +125,7 @@ public class SearchPage {
                 break;
         }
         if(result1 && result2){
-            LoggerUtil.logInfo("LogiN Test Case Completed Successfully for " + appName);
+            LoggerUtil.logInfo("General Product Search Test Case Completed Successfully for " + appName);
             return true;
         }
         return false;
@@ -141,7 +141,7 @@ public class SearchPage {
         WebElement specificProduct = driver.findElement(SpecificProductLoc);
         String specificProductName = specificProduct.getText();
         if(specificProductName.contains(product)){
-            LoggerUtil.logInfo("Login Test Case Completed Successfully for " + appName);
+            LoggerUtil.logInfo("Product Search Test Case Completed Successfully for " + appName);
             return true;
         }
         return false;
