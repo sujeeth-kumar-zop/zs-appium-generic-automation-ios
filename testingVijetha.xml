@@ -11,7 +11,7 @@
             <class name="test.AddToCartTest"/>
             <class name="test.SearchTest"/>
             <class name="test.SearchProductTest"/>
-<!--            <class name="test.IncrementProductQuantityInCartTest"/>-->
+            <class name="test.IncrementProductQuantityInCartTest"/>
         </classes>
     </test>
 </suite>
