@@ -10,9 +10,10 @@
             <class name="test.LoginTest"/>
             <class name="test.AddToCartTest"/>
             <class name="test.SearchTest"/>
-           <class name="test.SearchProductTest"/>
+            <class name="test.SearchProductTest"/>
             <class name="test.IncrementProductQuantityInCartTest"/>
             <class name="test.CheckOutDebitCardTest"/>
+            <class name="test.CheckOutCODTest"/>
         </classes>
     </test>
 </suite>

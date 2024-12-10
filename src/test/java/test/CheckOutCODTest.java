@@ -1,7 +1,8 @@
 package test;
 
 import com.zs.pages.common.CartPage;
-import com.zs.pages.common.SearchPage;
+import com.zs.pages.common.CheckOut;
+import com.zs.pages.tamimi.HomePageTamimi;
 import config.BaseTest;
 import com.zs.utils.ExtentReport;
 import com.zs.utils.LoggerUtil;
@@ -14,16 +15,19 @@ import java.time.Duration;
 
 import static org.testng.AssertJUnit.assertTrue;
 
-public class IncrementProductQuantityInCartTest extends BaseTest {
+public class CheckOutCODTest extends BaseTest {
     @Test
     @Parameters("appName")
-    public void incrementProductQuantity(@Optional String appName) throws InterruptedException {
+    public void checkOutCOD(@Optional String appName) throws InterruptedException {
         LoggerUtil.setExtentTest(ExtentReport.getTest());
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        CheckOut checkOut = new CheckOut(driver, wait);
+        HomePageTamimi homePageTamimi = new HomePageTamimi(driver, wait);
         CartPage cartPage = new CartPage(driver, wait);
-        SearchPage searchPage =new SearchPage(driver, wait);
-        searchPage.clickCancelButton(appName);
+        checkOut.clickBackButton(); //To go back to Home Page
+        homePageTamimi.addToCartFlow();
         cartPage.incrementProductFlow(appName);
-        assertTrue(cartPage.verifyIncrement(appName));
+        checkOut.checkOutFlowCOD(appName);
+        assertTrue(checkOut.verifyPlaceOrder(appName));
     }
 }
