@@ -34,7 +34,6 @@ public class TamimiLocators {
 
         //Department page
         departmentPageLocators.put("ProductNameBeforeAdd", By.xpath("//XCUIElementTypeStaticText[@name='Red Onions-1.5 kg']"));
-        //departmentPageLocators.put("ProductPriceBeforeAdd", By.xpath("//XCUIElementTypeStaticText[@name='8.95 SAR']"));
         departmentPageLocators.put("addButton", By.xpath("(//XCUIElementTypeButton[@name='increaseQuantity_scarlet'])[1]"));
         departmentPageLocators.put("CartButton", By.xpath("//XCUIElementTypeButton[@value='1 item']"));
 
@@ -51,7 +50,6 @@ public class TamimiLocators {
 
         //Product page
         productPageLocators.put("ProductNameAfterAdd", By.xpath("//XCUIElementTypeStaticText[@name='Red Onions - 1.5 kg']"));
-      //  productPageLocators.put("ProductPriceAfterAdd", By.xpath("//XCUIElementTypeStaticText[@name='8.95 SAR']"));
         productPageLocators.put("SpecificProduct", By.xpath("//XCUIElementTypeStaticText[@name='French Cheese Potato Chips']"));
         productPageLocators.put("CheckOut", By.xpath("//XCUIElementTypeButton[@name='CHECKOUT']"));
         productPageLocators.put("ProductIncrement", By.xpath("//XCUIElementTypeButton[@name='increaseQuantity_scarlet']"));
