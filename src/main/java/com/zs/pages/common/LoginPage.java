@@ -1,9 +1,9 @@
 package com.zs.pages.common;
 
-import com.zs.constants.Constants;
 import com.zs.pages.tamimi.LoginPageTamimi;
 import com.zs.pages.vijetha.LoginPageVijetha;
 import com.zs.utils.CommonUtils;
+import com.zs.utils.LoggerUtil;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -66,20 +66,29 @@ public class LoginPage {
     }
 
     public void loginFlow(String password, String username, String appName){
+        LoggerUtil.logInfo("Login Test Case Started for " + appName);
         LoginPage loginPage =new LoginPage(driver, wait);
         LoginPageVijetha loginPageVijetha =new LoginPageVijetha(wait);
         LoginPageTamimi loginPageTamimi =new LoginPageTamimi(wait);
         loginPage.clickOnProfileIcon(appName);
+        LoggerUtil.logInfo("Profile Icon Clicked");
         if(appName.equals("Vijetha")){
             loginPageVijetha.clickLoginWithPassword();
+            LoggerUtil.logInfo("Login with PassWord clicked");
+
         }
         loginPage.enterPhNo(username, appName);
+        LoggerUtil.logInfo("Phone number entered");
         loginPage.enterPassword(password, appName);
+        LoggerUtil.logInfo("PassWord entered");
         loginPage.clickLoginBtn(appName);
+        LoggerUtil.logInfo("Login Button Clicked");
         if(appName.equals("Tamimi")){
             loginPageTamimi.clickNotNow();
+            LoggerUtil.logInfo("Not Now Button Clicked");
         }
         loginPage.clickOnProfileIcon(appName);
+        LoggerUtil.logInfo("Login Test Case Completed Successfully for " + appName);
     }
 
 }

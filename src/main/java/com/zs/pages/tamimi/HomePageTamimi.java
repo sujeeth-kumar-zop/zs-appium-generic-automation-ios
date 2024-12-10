@@ -1,6 +1,7 @@
 package com.zs.pages.tamimi;
 
 import com.zs.locators.TamimiLocators;
+import com.zs.utils.LoggerUtil;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -10,18 +11,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HomePageTamimi {
-    public static Map<String, String> Product = new HashMap<>();
+    private final Map<String, String> product = new HashMap<>();
     private static  IOSDriver driver;
     private final WebDriverWait wait;
 
 //    private static final Logger logger= LoggerUtil.getLogger();
 
-    public HomePageTamimi(IOSDriver Currentdriver, WebDriverWait wait){
-        driver =Currentdriver;
+    public HomePageTamimi(IOSDriver currentDriver, WebDriverWait wait){
+        driver = currentDriver;
         this.wait=wait;
     }
 
-    public void clickFruitsAndVegetables(){
+    public void clickDepartmentButton(){
         By FruitsAndVegetablesLoc = TamimiLocators.getHomePageLocator("department");
         WebElement FruitsAndVegetablesBtn = driver.findElement(FruitsAndVegetablesLoc);
         FruitsAndVegetablesBtn.click();
@@ -29,10 +30,10 @@ public class HomePageTamimi {
     public void clickAddButton(){
         By ProductBeforeAddLoc = TamimiLocators.getDepartmentLocator("ProductNameBeforeAdd");
         WebElement productBeforeAdd = driver.findElement(ProductBeforeAddLoc);
-        Product.put("ProductBeforeAddName", productBeforeAdd.getText());
+        product.put("ProductBeforeAddName", productBeforeAdd.getText());
         By ProductPriceBeforeAddLoc = TamimiLocators.getDepartmentLocator("ProductPriceBeforeAdd");
         WebElement productPriceBeforeAdd = driver.findElement(ProductPriceBeforeAddLoc);
-        Product.put("ProductBeforeAddPrice", productPriceBeforeAdd.getText());
+        product.put("ProductBeforeAddPrice", productPriceBeforeAdd.getText());
         By AddButtonLoc = TamimiLocators.getDepartmentLocator("addButton");
         WebElement AddBtn = driver.findElement(AddButtonLoc);
         AddBtn.click();
@@ -43,10 +44,10 @@ public class HomePageTamimi {
         CartBtn.click();
         By ProductAfterAddLoc = TamimiLocators.getProductPageLocators("ProductNameAfterAdd");
         WebElement productAfterAdd = driver.findElement(ProductAfterAddLoc);
-        Product.put("ProductAfterAddName", productAfterAdd.getText());
+        product.put("ProductAfterAddName", productAfterAdd.getText());
         By ProductPriceAfterAddLoc = TamimiLocators.getProductPageLocators("ProductPriceAfterAdd");
         WebElement productPriceAfterAdd = driver.findElement(ProductPriceAfterAddLoc);
-        Product.put("ProductAfterAddPrice", productPriceAfterAdd.getText());
+        product.put("ProductAfterAddPrice", productPriceAfterAdd.getText());
     }
 
     public void clickHomeButton(){
@@ -55,23 +56,28 @@ public class HomePageTamimi {
         HomeBtn.click();
     }
     public boolean verifyProduct(){
-        String ProductBeforeAddName=Product.get("ProductBeforeAddName");
+        HomePageTamimi homePageTamimi =new HomePageTamimi(driver, wait);
+        homePageTamimi.clickCartButton();
+        String ProductBeforeAddName= product.get("ProductBeforeAddName");
         ProductBeforeAddName=ProductBeforeAddName.replace(" ", "");
-        String ProductAfterAddName=Product.get("ProductAfterAddName");
+        String ProductAfterAddName= product.get("ProductAfterAddName");
         ProductAfterAddName=ProductAfterAddName.replace(" ", "");
-        String ProductBeforeAddPrice=Product.get("ProductBeforeAddPrice");
+        String ProductBeforeAddPrice= product.get("ProductBeforeAddPrice");
         ProductBeforeAddPrice=ProductBeforeAddPrice.replace(" ", "");
-        String ProductAfterAddPrice=Product.get("ProductAfterAddPrice");
+        String ProductAfterAddPrice= product.get("ProductAfterAddPrice");
         ProductAfterAddPrice=ProductAfterAddPrice.replace(" ", "");
+        LoggerUtil.logInfo("Add to Cart Test Case Successfully Completed for Tamimi");
         return ProductBeforeAddName.equals(ProductAfterAddName) && ProductBeforeAddPrice.equals(ProductAfterAddPrice);
     }
 
     public void addToCartFlow(){
+        LoggerUtil.logInfo("Add to Cart Test Case Started for Tamimi");
         HomePageTamimi homePageTamimi =new HomePageTamimi(driver, wait);
         homePageTamimi.clickHomeButton();
-        homePageTamimi.clickFruitsAndVegetables();
+        LoggerUtil.logInfo("Clicked Home Page Button");
+        homePageTamimi.clickDepartmentButton();
+        LoggerUtil.logInfo("Clicked Department Button");
         homePageTamimi.clickAddButton();
-        homePageTamimi.clickCartButton();
-
+        LoggerUtil.logInfo("Clicked Add Button");
     }
 }
