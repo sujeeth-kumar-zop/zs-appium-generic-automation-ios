@@ -36,8 +36,11 @@ jobs:
         run: |
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
             brew install cocoapods
-            brew install carthage
+            if [ ! -f Podfile ]; then
+              pod init
+            fi
             pod install --project-directory=./
+            brew install carthage
 
       - name: Set up iOS Simulator
         run: |
