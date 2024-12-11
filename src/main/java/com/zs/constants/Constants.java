@@ -1,4 +1,8 @@
 package com.zs.constants;
+
+/**
+ * Class which declares all the constants used in the project
+ */
 public class Constants {
 
     public static final String TAMIMI = "Tamimi";
