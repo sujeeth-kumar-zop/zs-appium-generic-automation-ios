@@ -32,30 +32,30 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Install Homebrew and Dependencies
-        run: |
-            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-            brew install cocoapods
-            if [ ! -f Podfile ]; then
-              pod init
-            fi
-            pod install --project-directory=./zs-appium-generic-automation-ios
-            brew install carthage
-
-      - name: Set up iOS Simulator
-        run: |
-            xcodebuild -version
-            xcrun simctl list
-            xcrun simctl shutdown all
-            xcrun simctl erase all
-            xcrun simctl boot "iPhone 16 Pro"
-            xcrun simctl status_bar "iPhone 16 Pro" override --time "9:41"
-            xcrun simctl list devices
-            
-
-      - name: Wait for Simulator to Boot
-        run: |
-            while ! xcrun simctl list | grep "Booted"; do sleep 5; done    
+#      - name: Install Homebrew and Dependencies
+#        run: |
+#            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+#            brew install cocoapods
+#            if [ ! -f Podfile ]; then
+#              pod init
+#            fi
+#            pod install --project-directory=./zs-appium-generic-automation-ios
+#            brew install carthage
+#
+#      - name: Set up iOS Simulator
+#        run: |
+#            xcodebuild -version
+#            xcrun simctl list
+#            xcrun simctl shutdown all
+#            xcrun simctl erase all
+#            xcrun simctl boot "iPhone 16 Pro"
+#            xcrun simctl status_bar "iPhone 16 Pro" override --time "9:41"
+#            xcrun simctl list devices
+#
+#
+#      - name: Wait for Simulator to Boot
+#        run: |
+#            while ! xcrun simctl list | grep "Booted"; do sleep 5; done
 
 #      - name: Setup appium
 #        run: |
@@ -73,11 +73,11 @@ jobs:
 #          sdk: iOS
 #          script: mvn clean test -Pios
 
-      - name: Build project with Maven
-        run: mvn test -DsuiteXmlFiles=testngTamimi.xml -DappName=Tamimi
-
-      - name: Upload Extent Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: Extent Report
-          path: reports/ExtentReport.html
+#      - name: Build project with Maven
+#        run: mvn test -DsuiteXmlFiles=testngTamimi.xml -DappName=Tamimi
+#
+#      - name: Upload Extent Report
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: Extent Report
+#          path: reports/ExtentReport.html
