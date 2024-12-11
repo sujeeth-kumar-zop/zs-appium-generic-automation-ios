@@ -1,6 +1,6 @@
 package com.zs.pages.common;
 
-import com.zs.pages.tamimi.LoginPageTamimi;
+import com.zs.constants.Constants;
 import com.zs.pages.vijetha.LoginPageVijetha;
 import com.zs.utils.CommonUtils;
 import com.zs.utils.LoggerUtil;
@@ -89,8 +89,8 @@ public class LoginPage {
 
     public static void handlePopUp(String appName){
         int loop = switch (appName) {
-            case "Tamimi" -> 3;
-            case "Vijetha" -> 2;
+            case Constants.TAMIMI -> 3;
+            case Constants.VIJETHA -> 2;
             default -> -1;
         };
         for(int i=0; i<loop; i++) {
@@ -115,7 +115,7 @@ public class LoginPage {
         LoginPageVijetha loginPageVijetha =new LoginPageVijetha(wait);
         loginPage.clickOnProfileIcon(appName);
         LoggerUtil.logInfo("Profile Icon Clicked");
-        if(appName.equals("Vijetha")){
+        if(appName.equals(Constants.VIJETHA)){
             loginPageVijetha.clickLoginWithPassword();
             LoggerUtil.logInfo("Login with PassWord clicked");
 

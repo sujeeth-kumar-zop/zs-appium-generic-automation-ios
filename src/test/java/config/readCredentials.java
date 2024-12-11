@@ -1,7 +1,6 @@
 package config;
 
 import com.zs.utils.ExcelUtils;
-import org.testng.annotations.Optional;
 
 /**
  * The class is responsible for reading and storing the username and password for a specific application

@@ -1,5 +1,6 @@
 package com.zs.pages.common;
 
+import com.zs.constants.Constants;
 import com.zs.locators.TamimiLocators;
 import com.zs.locators.VijethaLocators;
 import com.zs.utils.CommonUtils;
@@ -63,12 +64,12 @@ public class CartPage {
 
     public void clickCartButton(String appName){
         switch (appName){
-            case "Tamimi":
+            case Constants.TAMIMI:
                 By CartButtonLoc = TamimiLocators.getDepartmentLocator("CartButton");
                 WebElement CartBtn = driver.findElement(CartButtonLoc);
                 CartBtn.click();
                 break;
-            case "Vijetha":
+            case Constants.VIJETHA:
                 By ViewCartLoc = VijethaLocators.getHomePageLocator("viewCart");
                 WebElement ViewCartBtn = driver.findElement(ViewCartLoc);
                 ViewCartBtn.click();
@@ -86,7 +87,7 @@ public class CartPage {
 
     public void clickIncrementButton(String appName){
         switch (appName) {
-            case "Tamimi":
+            case Constants.TAMIMI:
                 for (int i = 0; i < 19; i++) {
                     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
                     By incrementLoc = CommonUtils.getProductPageLocators(appName, "ProductIncrement");
@@ -94,7 +95,7 @@ public class CartPage {
                     IncrementBtn.click();
                 }
                 break;
-            case "Vijetha":
+            case Constants.VIJETHA:
                 CartPage cartPage = new CartPage(driver, wait);
                 By IncrementButtonLoc = CommonUtils.getProductPageLocators(appName,"IncrementProduct");
                 By PlaceOrderLoc = CommonUtils.getCartPageLocators(appName,"PlaceOrder");
@@ -128,7 +129,7 @@ public class CartPage {
     public void incrementProductFlow(String appName){
         LoggerUtil.logInfo("Increment Product Count in Cart Test Case Started for " + appName);
         CartPage cartPage = new CartPage(driver, wait);
-        if(appName.equals("Vijetha")){
+        if(appName.equals(Constants.VIJETHA)){
             Dimension screenSize = driver.manage().window().getSize();
             int centerX = screenSize.width / 2;
             int centerY = screenSize.height / 2;

@@ -1,5 +1,6 @@
 package com.zs.pages.tamimi;
 
+import com.zs.constants.Constants;
 import com.zs.locators.TamimiLocators;
 import com.zs.utils.LoggerUtil;
 import io.appium.java_client.ios.IOSDriver;
@@ -89,7 +90,7 @@ public class HomePageTamimi {
         ProductBeforeAddNameText=ProductBeforeAddNameText.replace(" ", "");
         String ProductAfterAddName= product.get("ProductAfterAddName");
         ProductAfterAddName=ProductAfterAddName.replace(" ", "");
-        LoggerUtil.logInfo("Add to Cart Test Case Successfully Completed for Tamimi");
+        LoggerUtil.logInfo("Add to Cart Test Case Successfully Completed for " + Constants.TAMIMI);
         return ProductBeforeAddNameText.equals(ProductAfterAddName);
     }
 
@@ -98,7 +99,7 @@ public class HomePageTamimi {
      */
 
     public void addToCartFlow(){
-        LoggerUtil.logInfo("Add to Cart Test Case Started for Tamimi");
+        LoggerUtil.logInfo("Add to Cart Test Case Started for " + Constants.TAMIMI);
         HomePageTamimi homePageTamimi =new HomePageTamimi(driver, wait);
         homePageTamimi.clickHomeButton();
         LoggerUtil.logInfo("Clicked Home Page Button");

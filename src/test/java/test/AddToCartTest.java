@@ -1,5 +1,6 @@
 package test;
 
+import com.zs.constants.Constants;
 import com.zs.pages.tamimi.HomePageTamimi;
 import com.zs.pages.vijetha.HomePageVijetha;
 import com.zs.utils.ExtentReport;
@@ -25,16 +26,15 @@ public class AddToCartTest extends BaseTest{
     @Test
     @Parameters("appName")
     public void addToCart(@Optional String appName) {
-
         LoggerUtil.setExtentTest(ExtentReport.getTest());
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         switch (appName){
-            case "Tamimi":
+            case Constants.TAMIMI:
                 HomePageTamimi homePageTamimi = new HomePageTamimi(driver, wait);
                 homePageTamimi.addToCartFlow();
                 assertTrue(homePageTamimi.verifyProduct());
                 break;
-            case "Vijetha":
+            case Constants.VIJETHA:
                 HomePageVijetha homePageVijetha = new HomePageVijetha(driver, wait);
                 homePageVijetha.addToCartFlow();
                 assertTrue(homePageVijetha.verifyProduct());

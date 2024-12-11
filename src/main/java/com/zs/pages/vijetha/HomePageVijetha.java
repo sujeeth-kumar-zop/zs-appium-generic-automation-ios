@@ -1,5 +1,6 @@
 package com.zs.pages.vijetha;
 
+import com.zs.constants.Constants;
 import com.zs.locators.VijethaLocators;
 import com.zs.utils.LoggerUtil;
 import io.appium.java_client.ios.IOSDriver;
@@ -124,6 +125,7 @@ public class HomePageVijetha {
         ProductBeforeAddName=ProductBeforeAddName.replace(" ", "");
         String ProductAfterAddName=Product.get("ProductAfterAddName");
         ProductAfterAddName=ProductAfterAddName.replace(" ", "");
+        LoggerUtil.logInfo("Add to Cart Test Case Successfully Completed for " + Constants.VIJETHA);
         return ProductAfterAddName.contains(ProductBeforeAddName);
     }
 
@@ -132,7 +134,7 @@ public class HomePageVijetha {
      */
 
     public void addToCartFlow()  {
-        LoggerUtil.logInfo("Add to Cart Test Case Started for Vijetha");
+        LoggerUtil.logInfo("Add to Cart Test Case Started for " + Constants.VIJETHA);
         HomePageVijetha homePageVijetha =new HomePageVijetha(driver, wait);
         homePageVijetha.clickHomeButton();
         LoggerUtil.logInfo("Clicked Home Page Button");
@@ -144,6 +146,5 @@ public class HomePageVijetha {
         LoggerUtil.logInfo("Clicked Options");
         homePageVijetha.clickAddButton();
         LoggerUtil.logInfo("Clicked Add Button");
-        LoggerUtil.logInfo("Add to Cart Test Case Successfully Completed for Vijetha");
     }
 }
