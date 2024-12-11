@@ -11,7 +11,17 @@ import java.time.Duration;
 import config.readCredentials;
 import static org.testng.AssertJUnit.assertTrue;
 
+/**
+ * Class use to run Login Test Case
+ * @author Nagesharao Shridhar Kunthe
+ */
+
 public class LoginTest extends BaseTest {
+
+    /**
+     * Function login use to run Login Test Case
+     * @param appName takes appName as the parameter and decides on which particular application login function should be executed
+     */
 
     @Test
     @Parameters("appName")
@@ -19,7 +29,7 @@ public class LoginTest extends BaseTest {
         LoggerUtil.setExtentTest(ExtentReport.getTest());
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
         readCredentials credentials=new readCredentials();
-        credentials.setCredientials(appName);
+        credentials.setCredentials(appName);
         LoginPage loginPage = new LoginPage(driver,wait);
         LoginPage.handlePopUp(appName);
         loginPage.loginFlow(credentials.getPassword(), credentials.getUserName(), appName);

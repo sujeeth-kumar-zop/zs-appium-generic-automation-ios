@@ -9,17 +9,31 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.Random;
+
+/**
+ * Class which contains all the functions which perform operation in Search Page
+ */
 
 public class SearchPage {
     private static IOSDriver driver;
     private final WebDriverWait wait;
 
+    /**
+     * Constructor that initialises IOSDriver and WebDriverWait
+     * @param CurrentDriver Current IOSDriver on which test cases will run
+     * @param wait WebDriverWait variable used to initialise wait variable of the class
+     */
+
     public SearchPage(IOSDriver CurrentDriver, WebDriverWait wait){
         driver =CurrentDriver;
         this.wait=wait;
     }
+
+    /**
+     * Function used to click Search Bar
+     * @param appName takes appName as the parameter and decides on which particular application clickSearchBar function should be executed
+     */
 
     public void clickSearchBar(String appName){
         By SearchBarLoc = CommonUtils.getHomePageLocator(appName ,"searchIcon");
@@ -27,17 +41,33 @@ public class SearchPage {
         SearchBarBtn.click();
     }
 
+    /**
+     * Function used to Enter Product name in the Search Bar
+     * @param appName takes appName as the parameter and decides on which particular application enterProduct function should be executed
+     * @param product takes String product as the parameter which contains product name to be entered in the Search Bar
+     */
+
     public void enterProduct(String appName, String product){
         By SearchLoc = CommonUtils.getSearchPageLocators(appName,"search");
         WebElement searchBox = driver.findElement(SearchLoc);
         wait.until(ExpectedConditions.visibilityOf(searchBox)).sendKeys(product);
     }
 
+    /**
+     * Function used to click Cancel button
+     * @param appName takes appName as the parameter and decides on which particular application clickCancelButton function should be executed
+     */
+
     public void clickCancelButton(String appName){
         By CancelButtonLoc = CommonUtils.getSearchPageLocators(appName,"cancel");
         WebElement CancelBtn = driver.findElement(CancelButtonLoc);
         CancelBtn.click();
     }
+
+    /**
+     * Function which control the search flow of a general product
+     * @param appName takes appName as the parameter and decides on which particular application generalSearchFlow function should be executed
+     */
 
     public void generalSearchFlow(String appName){
         LoggerUtil.logInfo("General Product Test Case Started for" + appName);
@@ -64,6 +94,11 @@ public class SearchPage {
         LoggerUtil.logInfo("Product Entered and Search Successfully Completed for" + appName);
     }
 
+    /**
+     * Function which control the search flow of a specific product
+     * @param appName takes appName as the parameter and decides on which particular application productSearchFlow function should be executed
+     */
+
     public void productSearchFlow(String appName){
         LoggerUtil.logInfo("Specific Product Test Case Started for " + appName);
         String product = switch (appName) {
@@ -81,10 +116,21 @@ public class SearchPage {
         LoggerUtil.logInfo("Product Entered and Search Successfully Completed for " + appName);
     }
 
+    /**
+     * Function which generates a random number
+     * @return an integer which contains the random number generated
+     */
     public static int generateRandomNumber() {
         Random random = new Random();
         return random.nextInt(4) + 2;
     }
+
+    /**
+     * Function used to assert General Product Search Test Cases
+     * Verifies if Search is successfully. Checks if the first product is related to the Searched product and randomly checks among the next 4 products if the product is related to Searched product
+     * @param appName takes appName as the parameter and decides on which particular application verifyGeneralProduct function should be executed
+     * @return returns boolean value "true" if the Search is Successful and boolean value "false" if the Search fails
+     */
 
     public boolean verifyGeneralProduct(String appName){
         int randomNumber=generateRandomNumber();
@@ -130,6 +176,13 @@ public class SearchPage {
         }
         return false;
     }
+
+    /**
+     * Function used to assert Specific Product Search Test Cases
+     * Verifies if the Search is successfully. Checks if the first product in the list is searched product
+     * @param appName takes appName as the parameter and decides on which particular application verifyProduct function should be executed
+     * @return returns boolean value "true" if the Search is Successful and boolean value "false" if the Search fails
+     */
 
     public boolean verifyProduct(String appName){
         String product = switch (appName) {

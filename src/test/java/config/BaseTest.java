@@ -9,6 +9,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * BaseTest class serves as a base for Appium-based test automation for iOS applications.
+ * It provides common setup and teardown functionality for the tests, including the initialization
+ * of the Appium IOSDriver and configuration of capabilities for iOS devices.
+ */
+
 public class BaseTest {
 
     public static IOSDriver driver;
@@ -16,6 +22,13 @@ public class BaseTest {
 
     @BeforeClass
     @Parameters("appFile")
+
+    /**
+     * The setup method creates a driver instance with the desired capabilities based on the
+     * provided parameters appFile path and sets the necessary configurations for the iOS
+     * device and app under test.
+     */
+
     public IOSDriver setUp(@Optional String appFile) throws MalformedURLException {
         logger= LogManager.getLogger(this.getClass());
         DesiredCapabilities caps = new DesiredCapabilities();
@@ -30,6 +43,10 @@ public class BaseTest {
         return driver;
     }
 
+    /**
+     * The teardown method ensures the driver is properly quit after the tests are finished
+     */
+    
     @AfterClass
     public void tearDown() {
         if (driver != null) {

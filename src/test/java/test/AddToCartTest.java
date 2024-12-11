@@ -8,15 +8,23 @@ import config.BaseTest;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 import java.time.Duration;
-
 import static org.testng.AssertJUnit.assertTrue;
 
+/**
+ * Class use to run Add to Cart Test Case
+ * @author Nagesharao Shridhar Kunthe
+ */
 
 public class AddToCartTest extends BaseTest{
 
+    /**
+     * Function addToCart use to run Add to Cart Test Case
+     * @param appName takes appName as the parameter and decides on which particular application addToCart function should be executed
+     */
+
     @Test
     @Parameters("appName")
-    public void addToCart(@Optional String appName) throws InterruptedException {
+    public void addToCart(@Optional String appName) {
 
         LoggerUtil.setExtentTest(ExtentReport.getTest());
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

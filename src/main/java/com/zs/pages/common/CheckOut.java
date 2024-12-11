@@ -10,18 +10,32 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 import java.util.List;
+
+/**
+ * Class which contains all the functions which perform operation related to checkout
+ */
 
 public class CheckOut {
     private static IOSDriver driver;
     private final WebDriverWait wait;
 
+    /**
+     * Constructor that initialises IOSDriver and WebDriverWait
+     * @param CurrentDriver Current IOSDriver on which test cases will run
+     * @param wait WebDriverWait variable used to initialise wait variable of the class
+     */
+
     public CheckOut(IOSDriver CurrentDriver, WebDriverWait wait) {
         driver = CurrentDriver;
         this.wait = wait;
     }
+
+    /**
+     * Function used to click Select Substitution Button and Select "Call for Substitution" option
+     * @param appName takes appName as the parameter and decides on which particular application clickSelectSubstitutionBtn function should be executed
+     */
 
     public void clickSelectSubstitutionBtn(String appName){
         By selectSubstitutionBtnLoc = CommonUtils.getProductPageLocators(appName, "SelectSubstitution");
@@ -32,11 +46,20 @@ public class CheckOut {
         callForSubstitutionBtn.click();
     }
 
+    /**
+     * Function used to click Back Button
+     */
+
     public void clickBackButton(){
         By BackButtonLoc = TamimiLocators.getCartPageLocators("BackButton");
         WebElement BackButtonBtn = driver.findElement(BackButtonLoc);
         BackButtonBtn.click();
     }
+
+    /**
+     * Function used to click Checkout Button
+     * @param appName takes appName as the parameter and decides on which particular application clickCheckOutBtn function should be executed
+     */
 
     public void clickCheckOutBtn(String appName){
         By checkOutBtnLoc = CommonUtils.getProductPageLocators(appName, "CheckOut");
@@ -53,7 +76,11 @@ public class CheckOut {
         }
     }
 
-    public void scrollToEnd(String appName) {
+    /**
+     * Function used to scroll the page till the end
+     */
+
+    public void scrollToEnd() {
         Dimension dimension = driver.manage().window().getSize();
 
         int startX = dimension.width / 2;  // Middle of the screen horizontally
@@ -74,6 +101,11 @@ public class CheckOut {
         driver.perform(List.of(swipe));
     }
 
+    /**
+     * Function used to click Debit Card radio button and Select a particular Debit Card from the available options
+     * @param appName takes appName as the parameter and decides on which particular application debitCardSelection function should be executed
+     */
+
     public void debitCardSelection(String appName){
         By debitCardLoc = CommonUtils.getProductPageLocators(appName, "DebitCard");
         WebElement debitCardBtn = driver.findElement(debitCardLoc);
@@ -83,11 +115,21 @@ public class CheckOut {
         cardSelectionBtn.click();
     }
 
+    /**
+     * Function used to click Cash on Delivery Radio Button
+     * @param appName takes appName as the parameter and decides on which particular application CashOnDeliverySelection function should be executed
+     */
+
     public void CashOnDeliverySelection(String appName){
         By CODLoc = CommonUtils.getProductPageLocators(appName, "COD");
         WebElement CODBtn = driver.findElement(CODLoc);
         CODBtn.click();
     }
+
+    /**
+     * Function used to click Place Order Button
+     * @param appName takes appName as the parameter and decides on which particular application clickPlaceOrder function should be executed
+     */
 
     public void clickPlaceOrder(String appName){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
@@ -97,7 +139,15 @@ public class CheckOut {
         WebElement placeOrderBtn = driver.findElement(placeOrderLoc);
         placeOrderBtn.click();
     }
-    public boolean verifyPlaceOrder(String appName){
+
+    /**
+     * Function used to assert Checkout Test Cases
+     * Verifies if the Order is placed successfully
+     * @param appName takes appName as the parameter and decides on which particular application verifyCheckOut function should be executed
+     * @return returns boolean value "true" if the Checkout is Successful and boolean value "false" if the Checkout fails
+     */
+
+    public boolean verifyCheckOut(String appName){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         long startTime = System.currentTimeMillis();
         wait.until(driver1 -> (System.currentTimeMillis() - startTime) >= 3000);
@@ -111,14 +161,19 @@ public class CheckOut {
         return false;
     }
 
-    public void checkOutFlow(String appName) {
+    /**
+     * Function which control the checkOut using Debit Card Test case Flow
+     * @param appName takes appName as the parameter and decides on which particular application checkOutFlowDebitCard function should be executed
+     */
+
+    public void checkOutFlowDebitCard(String appName) {
         LoggerUtil.logInfo("Check Out Using Debit Card Test Case Started for " + appName);
         CheckOut checkOut = new CheckOut(driver, wait);
         checkOut.clickSelectSubstitutionBtn(appName);
         LoggerUtil.logInfo("Selection for Substitution Completed");
         checkOut.clickCheckOutBtn(appName);
         LoggerUtil.logInfo("Check Out Button Clicked");
-        checkOut.scrollToEnd(appName);
+        checkOut.scrollToEnd();
         LoggerUtil.logInfo("Scroll down for Selection of Payment Method done");
         checkOut.debitCardSelection(appName);
         LoggerUtil.logInfo("Debit Card Selected");
@@ -126,12 +181,17 @@ public class CheckOut {
         LoggerUtil.logInfo("Place Order Button Clicked");
     }
 
+    /**
+     * Function which control the checkOut using Cash on Collection/Cash on Delivery Test case Flow
+     * @param appName takes appName as the parameter and decides on which particular application checkOutFlowCOD function should be executed
+     */
+
     public void checkOutFlowCOD(String appName) {
         LoggerUtil.logInfo("Check Out using COD Test Case Started for " + appName);
         CheckOut checkOut = new CheckOut(driver, wait);
         checkOut.clickCheckOutBtn(appName);
         LoggerUtil.logInfo("Check Out Button Clicked");
-        checkOut.scrollToEnd(appName);
+        checkOut.scrollToEnd();
         LoggerUtil.logInfo("Scroll down for Selection of Payment Method done");
         checkOut.CashOnDeliverySelection(appName);
         LoggerUtil.logInfo("Debit Card Selected");
