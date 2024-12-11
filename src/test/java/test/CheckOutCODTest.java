@@ -10,12 +10,21 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import java.time.Duration;
-
 import static org.testng.AssertJUnit.assertTrue;
 
+/**
+ * Class use to run Checkout Using Case on Collection/Case on Delivery Test Case
+ * @author Nagesharao Shridhar Kunthe
+ */
+
 public class CheckOutCODTest extends BaseTest {
+
+    /**
+     * Function checkOutCOD use to run Checkout Using Case on Collection/Case on Delivery Test Case
+     * @param appName takes appName as the parameter and decides on which particular application checkOutCOD function should be executed
+     */
+
     @Test
     @Parameters("appName")
     public void checkOutCOD(@Optional String appName) throws InterruptedException {
@@ -28,6 +37,6 @@ public class CheckOutCODTest extends BaseTest {
         homePageTamimi.addToCartFlow();
         cartPage.incrementProductFlow(appName);
         checkOut.checkOutFlowCOD(appName);
-        assertTrue(checkOut.verifyPlaceOrder(appName));
+        assertTrue(checkOut.verifyCheckOut(appName));
     }
 }

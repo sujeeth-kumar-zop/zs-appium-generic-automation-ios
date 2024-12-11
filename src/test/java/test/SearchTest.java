@@ -7,11 +7,19 @@ import com.zs.utils.LoggerUtil;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 import java.time.Duration;
-
 import static org.testng.AssertJUnit.assertTrue;
 
+/**
+ * Class use to run Search  a General Product Test Case
+ * @author Nagesharao Shridhar Kunthe
+ */
 
 public class SearchTest extends BaseTest{
+
+    /**
+     * Function generalSearch use to run Search  a General Product Test Case
+     * @param appName takes appName as the parameter and decides on which particular application generalSearch function should be executed
+     */
 
     @Test
     @Parameters("appName")

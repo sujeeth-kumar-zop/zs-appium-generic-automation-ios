@@ -9,12 +9,21 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import java.time.Duration;
-
 import static org.testng.AssertJUnit.assertTrue;
 
+/**
+ * Class use to run Increment Product Quantity In the Cart Test Case
+ * @author Nagesharao Shridhar Kunthe
+ */
+
 public class IncrementProductQuantityInCartTest extends BaseTest {
+
+    /**
+     * Function incrementProductQuantity use to run Increment Product Quantity In the Cart Test Case
+     * @param appName takes appName as the parameter and decides on which particular application incrementProductQuantity function should be executed
+     */
+
     @Test
     @Parameters("appName")
     public void incrementProductQuantity(@Optional String appName) throws InterruptedException {

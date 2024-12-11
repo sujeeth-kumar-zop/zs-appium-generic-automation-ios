@@ -8,6 +8,11 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+/**
+ * Extent report class which implements ITestListener interface and overrides methods includes:
+ * onStart, onTestStart, onTestSuccess, onTestFailure, onTestSkipped, onTestSkipped.
+ */
+
 public class ExtentReport implements ITestListener {
     private static ExtentReports extent;
     private static ExtentSparkReporter sparkReporter;

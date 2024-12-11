@@ -12,31 +12,55 @@ import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.List;
-
-
 import java.time.Duration;
+
+/**
+ * Class which contains all the functions which perform operation in Cart Page
+ */
 
 public class CartPage {
     private static IOSDriver driver;
     private static WebDriverWait wait = null;
+
+    /**
+     * Constructor that initialises IOSDriver and WebDriverWait
+     * @param CurrentDriver Current IOSDriver on which test cases will run
+     * @param wait WebDriverWait variable used to initialise wait variable of the class
+     */
 
     public CartPage(IOSDriver CurrentDriver, WebDriverWait wait) {
         driver = CurrentDriver;
         CartPage.wait = wait;
     }
 
+    /**
+     * Function used to click Home Button
+     * @param appName takes appName as the parameter and decides on which particular application clickHomeButton function should be executed
+     */
+
     public void clickHomeButton(String appName){
         By HomeButtonLoc = CommonUtils.getSearchPageLocators(appName,"homeIcon");
         WebElement HomeBtn = driver.findElement(HomeButtonLoc);
         HomeBtn.click();
     }
+
+    /**
+     * Function used to click Okay Button
+     * @param appName takes appName as the parameter and decides on which particular application clickOkay function should be executed
+     */
+
     public void clickOkay(String appName){
         By OkayButtonLoc = CommonUtils.getProductPageLocators(appName,"OkayButton");
         WebElement OkayBtn = driver.findElement(OkayButtonLoc);
         OkayBtn.click();
     }
+
+    /**
+     * Function used to click Cart Button
+     * @param appName takes appName as the parameter and decides on which particular application clickCartButton function should be executed
+     */
+
     public void clickCartButton(String appName){
         switch (appName){
             case "Tamimi":
@@ -53,7 +77,14 @@ public class CartPage {
                 throw new IllegalArgumentException("Invalid app name: " + appName);
         }
     }
-    public void clickIncrementButton(String appName) throws InterruptedException {
+
+    /**
+     * Function used to click Increment Button
+     * This Function increment the quantity of the product that is added in the cart
+     * @param appName takes appName as the parameter and decides on which particular application clickIncrementButton function should be executed
+     */
+
+    public void clickIncrementButton(String appName){
         switch (appName) {
             case "Tamimi":
                 for (int i = 0; i < 19; i++) {
@@ -66,7 +97,6 @@ public class CartPage {
             case "Vijetha":
                 CartPage cartPage = new CartPage(driver, wait);
                 By IncrementButtonLoc = CommonUtils.getProductPageLocators(appName,"IncrementProduct");
-                //Thread.sleep(5000);
                 By PlaceOrderLoc = CommonUtils.getCartPageLocators(appName,"PlaceOrder");
                 WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(PlaceOrderLoc));
                 WebElement IncrementBtn = wait.until(ExpectedConditions.elementToBeClickable(IncrementButtonLoc));
@@ -74,26 +104,28 @@ public class CartPage {
                 PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
                 Sequence swipe = new Sequence(finger, 0);
 
-// Define start and end points
                 int startX = 200;
                 int startY = 470;
                 int endX = 200;
                 int endY = 420;
 
-// Add actions to the sequence
                 swipe.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX, startY)); // Move to start point
                 swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));                        // Press down
                 swipe.addAction(finger.createPointerMove(Duration.ofSeconds(1), PointerInput.Origin.viewport(), endX, endY)); // Move to end point
                 swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));                          // Release
 
-// Perform the action
                 driver.perform(List.of(swipe));
                 cartPage.clickOkay(appName);
 
         }
     }
 
-    public void incrementProductFlow(String appName) throws InterruptedException {
+    /**
+     * Function which control the flow of Increment product quantity in the cart Test case
+     * @param appName takes appName as the parameter and decides on which particular application incrementProductFlow function should be executed
+     */
+
+    public void incrementProductFlow(String appName){
         LoggerUtil.logInfo("Increment Product Count in Cart Test Case Started for " + appName);
         CartPage cartPage = new CartPage(driver, wait);
         if(appName.equals("Vijetha")){
@@ -115,6 +147,14 @@ public class CartPage {
         cartPage.clickIncrementButton(appName);
         LoggerUtil.logInfo("Product Incremented");
     }
+
+    /**
+     * Function use to assert Increment product quantity in the cart Test case
+     * It checks if the quantity of the product is increased in the Cart
+     * @param appName takes appName as the parameter and decides on which particular application verifyIncrement function should be executed
+     * @return returns boolean value "true" if the quantity of the product is increased in the Cart or else returns boolean value "false" if the quantity of the product in the Cart is not incremented
+     */
+
     public boolean verifyIncrement(String appName){
         By ProductQuantityLoc = CommonUtils.getProductPageLocators(appName,"ProductQuantity");
         WebElement productQuantity = driver.findElement(ProductQuantityLoc);
