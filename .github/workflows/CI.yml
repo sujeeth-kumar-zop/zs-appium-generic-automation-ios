@@ -32,27 +32,52 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup appium
-        run: |
-          npm install -g appium@2.12.1
-          appium driver install XCUITest
-          appium driver list --installed
-          appium -v
-          appium &>/dev/null &
+#      - name: Install Homebrew and Dependencies
+#        run: |
+#            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+#            brew install cocoapods
+#            if [ ! -f Podfile ]; then
+#              pod init
+#            fi
+#            pod install --project-directory=./zs-appium-generic-automation-ios
+#            brew install carthage
+#
+#      - name: Set up iOS Simulator
+#        run: |
+#            xcodebuild -version
+#            xcrun simctl list
+#            xcrun simctl shutdown all
+#            xcrun simctl erase all
+#            xcrun simctl boot "iPhone 16 Pro"
+#            xcrun simctl status_bar "iPhone 16 Pro" override --time "9:41"
+#            xcrun simctl list devices
+#
+#
+#      - name: Wait for Simulator to Boot
+#        run: |
+#            while ! xcrun simctl list | grep "Booted"; do sleep 5; done
 
-      - name: Run appium iOS tests
-        uses: reactivecircus/ios-emulator-runner@v2
-        with:
-          platform-version: 18.1
-          device: iPhone 16 Pro
-          sdk: iOS
-          script: mvn clean test -Pios
+#      - name: Setup appium
+#        run: |
+#          npm install -g appium@2.12.1
+#          appium driver install XCUITest
+#          appium driver list --installed
+#          appium -v
+#          appium &>/dev/null &
+#
+#      - name: Run appium iOS tests
+#        uses: reactivecircus/ios-emulator-runner@v2
+#        with:
+#          platform-version: 18.1
+#          device: iPhone 16 Pro
+#          sdk: iOS
+#          script: mvn clean test -Pios
 
-      - name: Build project with Maven
-        run: mvn test -DsuiteXmlFiles=testngTamimi.xml -DappName=Tamimi
-
-      - name: Upload Extent Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: Extent Report
-          path: reports/ExtentReport.html
+#      - name: Build project with Maven
+#        run: mvn test -DsuiteXmlFiles=testngTamimi.xml -DappName=Tamimi
+#
+#      - name: Upload Extent Report
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: Extent Report
+#          path: reports/ExtentReport.html
