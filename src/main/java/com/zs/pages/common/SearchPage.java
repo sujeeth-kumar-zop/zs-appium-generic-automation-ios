@@ -1,8 +1,8 @@
 package com.zs.pages.common;
 
 import com.zs.constants.Constants;
-import com.zs.pages.tamimi.HomePageTamimi;;
-import com.zs.pages.vijetha.SearchPageVijetha;
+import com.zs.locators.VijethaLocators;
+import com.zs.pages.tamimi.HomePageTamimi;
 import com.zs.utils.CommonUtils;
 import com.zs.utils.LoggerUtil;
 import io.appium.java_client.ios.IOSDriver;
@@ -66,6 +66,16 @@ public class SearchPage {
     }
 
     /**
+     * Function used to click Back button for Vijetha
+     */
+
+    public void clickBackButton(){
+        By BackButtonLoc = VijethaLocators.getSearchPageLocator("back");
+        WebElement BackButtonBtn = driver.findElement(BackButtonLoc);
+        BackButtonBtn.click();
+    }
+
+    /**
      * Function which control the search flow of a general product
      * @param appName takes appName as the parameter and decides on which particular application generalSearchFlow function should be executed
      */
@@ -84,9 +94,8 @@ public class SearchPage {
             LoggerUtil.logInfo("Home Button clicked");
         }
         else{
-            SearchPageVijetha searchPageVijetha =new SearchPageVijetha(driver);
             for(int i=0; i<2; i++) {
-                searchPageVijetha.clickBackButton();
+                searchPage.clickBackButton();
             }
         }
         searchPage.clickSearchBar(appName);

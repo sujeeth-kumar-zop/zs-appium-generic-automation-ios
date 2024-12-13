@@ -1,7 +1,6 @@
 package com.zs.pages.common;
 
 import com.zs.constants.Constants;
-import com.zs.pages.vijetha.LoginPageVijetha;
 import com.zs.utils.CommonUtils;
 import com.zs.utils.LoggerUtil;
 import io.appium.java_client.ios.IOSDriver;
@@ -10,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+
+import static com.zs.locators.VijethaLocators.getLoginLocator;
 
 /**
  * Class which contains all the functions which perform operation in Login Page
@@ -55,6 +56,16 @@ public class LoginPage {
         By phnoTextBoxLoc = CommonUtils.getLoginLocator(appName, "enterEmailOrPhoneTextBox");
         WebElement phnoTextBox= driver.findElement(phnoTextBoxLoc);
         wait.until(ExpectedConditions.visibilityOf(phnoTextBox)).sendKeys(username);
+    }
+
+    /**
+     * Function used to click LoginWithPassword Button for Vijetha
+     */
+
+    public void clickLoginWithPassword(){
+        By loginWithPasswordLoc = getLoginLocator("logInWithPassword");
+        WebElement loginWithPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(loginWithPasswordLoc));
+        loginWithPassword.click();
     }
 
     /**
@@ -112,11 +123,10 @@ public class LoginPage {
     public void loginFlow(String password, String username, String appName){
         LoggerUtil.logInfo("Login Test Case Started for " + appName);
         LoginPage loginPage =new LoginPage(driver, wait);
-        LoginPageVijetha loginPageVijetha =new LoginPageVijetha(wait);
         loginPage.clickOnProfileIcon(appName);
         LoggerUtil.logInfo("Profile Icon Clicked");
         if(appName.equals(Constants.VIJETHA)){
-            loginPageVijetha.clickLoginWithPassword();
+            loginPage.clickLoginWithPassword();
             LoggerUtil.logInfo("Login with PassWord clicked");
 
         }
