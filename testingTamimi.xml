@@ -11,8 +11,7 @@
             <class name="test.AddToCartTest"/>
             <class name="test.SearchTest"/>
             <class name="test.IncrementProductQuantityInCartTest"/>
-            <class name="test.CheckOutDebitCardTest"/>
-            <class name="test.CheckOutCODTest"/>
+            <class name="test.CheckOutTest"/>
         </classes>
     </test>
 </suite>
