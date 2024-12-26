@@ -125,6 +125,21 @@ public class CommonUtils{
     public static By getCartPageLocators(String appName, String key){
         return switch (appName){
             case Constants.VIJETHA -> VijethaLocators.getCartPageLocator(key);
+            case Constants.TAMIMI -> TamimiLocators.getCartPageLocators(key);
+            default -> throw new IllegalArgumentException("Invalid app name: " + appName);
+        };
+    }
+
+    /**
+     * Function which returns the locators of Order Page
+     * @param appName takes appName as the parameter and decides which particular application's locator is to be returned
+     * @param key contains the name of the locator
+     * @return returns the locator
+     */
+
+    public static By getOrderPageLocators(String appName, String key){
+        return switch (appName){
+            case Constants.TAMIMI -> TamimiLocators.getOrderPageLocators(key);
             default -> throw new IllegalArgumentException("Invalid app name: " + appName);
         };
     }
