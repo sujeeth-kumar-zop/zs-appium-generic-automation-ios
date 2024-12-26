@@ -14,6 +14,7 @@
             <class name="test.IncrementProductQuantityInCartTest"/>
             <class name="test.CheckOutDebitCardTest"/>
             <class name="test.CheckOutCODTest"/>
+            <class name="test.OrderCancellationTest"/>
         </classes>
     </test>
 </suite>
