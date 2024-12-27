@@ -18,6 +18,7 @@ public class TamimiLocators {
     public static final Map<String, By> productListsLocators=new HashMap<>();
     public static final Map<String, By> productPageLocators=new HashMap<>();
     public static final Map<String, By> cartPageLocators=new HashMap<>();
+    public static final Map<String, By> orderPageLocators=new HashMap<>();
     static {
 
         /**
@@ -87,6 +88,16 @@ public class TamimiLocators {
          */
         cartPageLocators.put("BackButton", By.xpath("//XCUIElementTypeButton[@name='chevron.left']"));
         cartPageLocators.put("OkayButton", By.xpath("//XCUIElementTypeButton[@name='Okay']"));
+
+
+        /**
+         * Order page locators for Tamimi
+         */
+        orderPageLocators.put("MyOrdersButton", By.xpath("//XCUIElementTypeImage[@name='myOrderbtnScarlet']"));
+        orderPageLocators.put("OptionsButton", By.xpath("(//XCUIElementTypeButton[@name='ellipsis'])[1]"));
+        orderPageLocators.put("CancelButton", By.xpath("//XCUIElementTypeButton[@name='Cancel']"));
+        orderPageLocators.put("ClickYes", By.xpath("//XCUIElementTypeButton[@name='Yes']"));
+        orderPageLocators.put("Amount", By.xpath("(//XCUIElementTypeStaticText[@name='0.00 SAR'])[1]"));
     }
 
     /***
@@ -167,5 +178,15 @@ public class TamimiLocators {
 
     public static By getCartPageLocators(String locatorName){
         return cartPageLocators.get(locatorName);
+    }
+
+    /***
+     * Function which returns the Xpath of the Order Page Locators for Tamimi
+     * @param locatorName Takes name of the locator as the parameter to search for the XPath in the map
+     * @return Xpath of the particular locator
+     */
+
+    public static By getOrderPageLocators(String locatorName){
+        return orderPageLocators.get(locatorName);
     }
 }

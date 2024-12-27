@@ -12,6 +12,7 @@
             <class name="test.SearchTest"/>
             <class name="test.IncrementProductQuantityInCartTest"/>
             <class name="test.CheckOutTest"/>
+            <class name="test.OrderCancellationTest"/>
         </classes>
     </test>
 </suite>
