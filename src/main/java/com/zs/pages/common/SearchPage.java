@@ -1,6 +1,6 @@
 package com.zs.pages.common;
 
-import com.zs.pages.tamimi.HomePageTamimi;;
+import com.zs.pages.tamimi.HomePageTamimi;
 import com.zs.pages.vijetha.SearchPageVijetha;
 import com.zs.utils.CommonUtils;
 import com.zs.utils.LoggerUtil;
