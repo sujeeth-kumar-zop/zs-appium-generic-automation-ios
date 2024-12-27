@@ -25,8 +25,8 @@ public class ExcelUtils {
 
     public static void loadExcel() {
         try {
-            File f = new File("src/main/resources/utils");
-            File fs = new File(f, "login_details.xlsx");
+            File f = new File(Constants.LOGIN_DETAILS_PATH);
+            File fs = new File(f, Constants.FILE_NAME);
             FileInputStream file = new FileInputStream(fs);
             workbook = WorkbookFactory.create(file);
             sheet = workbook.getSheetAt(0);

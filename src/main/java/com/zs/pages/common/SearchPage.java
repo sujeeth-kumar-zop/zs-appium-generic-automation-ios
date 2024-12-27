@@ -1,7 +1,8 @@
 package com.zs.pages.common;
 
-import com.zs.pages.tamimi.HomePageTamimi;;
-import com.zs.pages.vijetha.SearchPageVijetha;
+import com.zs.constants.Constants;
+import com.zs.locators.VijethaLocators;
+import com.zs.pages.tamimi.HomePageTamimi;
 import com.zs.utils.CommonUtils;
 import com.zs.utils.LoggerUtil;
 import io.appium.java_client.ios.IOSDriver;
@@ -65,6 +66,16 @@ public class SearchPage {
     }
 
     /**
+     * Function used to click Back button for Vijetha
+     */
+
+    public void clickBackButton(){
+        By BackButtonLoc = VijethaLocators.getSearchPageLocator("back");
+        WebElement BackButtonBtn = driver.findElement(BackButtonLoc);
+        BackButtonBtn.click();
+    }
+
+    /**
      * Function which control the search flow of a general product
      * @param appName takes appName as the parameter and decides on which particular application generalSearchFlow function should be executed
      */
@@ -73,19 +84,18 @@ public class SearchPage {
         LoggerUtil.logInfo("General Product Test Case Started for" + appName);
         SearchPage searchPage =new SearchPage(driver, wait);
         String product = switch (appName) {
-            case "Tamimi" -> "Tomato";
-            case "Vijetha" -> "Orange";
+            case Constants.TAMIMI -> Constants.GENERAL_SEARCH_PRODUCT_FOR_TAMIMI;
+            case Constants.VIJETHA -> Constants.GENERAL_SEARCH_PRODUCT_FOR_VIJETHA;
             default -> "";
         };
-        if(appName.equals("Tamimi")){
+        if(appName.equals(Constants.TAMIMI)){
             HomePageTamimi homePageTamimi =new HomePageTamimi(driver, wait);
             homePageTamimi.clickHomeButton();
             LoggerUtil.logInfo("Home Button clicked");
         }
         else{
-            SearchPageVijetha searchPageVijetha =new SearchPageVijetha(driver);
             for(int i=0; i<2; i++) {
-                searchPageVijetha.clickBackButton();
+                searchPage.clickBackButton();
             }
         }
         searchPage.clickSearchBar(appName);
@@ -102,13 +112,13 @@ public class SearchPage {
     public void productSearchFlow(String appName){
         LoggerUtil.logInfo("Specific Product Test Case Started for " + appName);
         String product = switch (appName) {
-            case "Tamimi" -> "French Cheese Potato Chips";
-            case "Vijetha" -> "Bingo Hashtags Spicy Masala";
+            case Constants.TAMIMI -> Constants.SPECIFIC_SEARCH_PRODUCT_FOR_TAMIMI;
+            case Constants.VIJETHA -> Constants.SPECIFIC_SEARCH_PRODUCT_FOR_VIJETHA;
             default -> "";
         };
         SearchPage searchPage =new SearchPage(driver, wait);
         searchPage.clickCancelButton(appName);
-        if(appName.equals("Tamimi")){
+        if(appName.equals(Constants.TAMIMI)){
             searchPage.clickSearchBar(appName);
             LoggerUtil.logInfo("Search Bar Clicked");
         }
@@ -135,8 +145,8 @@ public class SearchPage {
     public boolean verifyGeneralProduct(String appName){
         int randomNumber=generateRandomNumber();
         String product = switch (appName) {
-            case "Tamimi" -> "Tomato";
-            case "Vijetha" -> "Orange";
+            case Constants.TAMIMI -> Constants.GENERAL_SEARCH_PRODUCT_FOR_TAMIMI;
+            case Constants.VIJETHA -> Constants.GENERAL_SEARCH_PRODUCT_FOR_VIJETHA;
             default -> "";
         };
         By Product1Loc = CommonUtils.getProductListsLocators(appName,"Product1");
@@ -186,8 +196,8 @@ public class SearchPage {
 
     public boolean verifyProduct(String appName){
         String product = switch (appName) {
-            case "Tamimi" -> "French Cheese Potato Chips";
-            case "Vijetha" -> "Bingo Hashtags Spicy Masala";
+            case Constants.TAMIMI -> Constants.SPECIFIC_SEARCH_PRODUCT_FOR_TAMIMI;
+            case Constants.VIJETHA -> Constants.SPECIFIC_SEARCH_PRODUCT_FOR_VIJETHA;
             default -> "";
         };
         By SpecificProductLoc = CommonUtils.getProductPageLocators(appName,"SpecificProduct");

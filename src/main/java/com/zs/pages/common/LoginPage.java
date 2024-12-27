@@ -1,7 +1,6 @@
 package com.zs.pages.common;
 
-import com.zs.pages.tamimi.LoginPageTamimi;
-import com.zs.pages.vijetha.LoginPageVijetha;
+import com.zs.constants.Constants;
 import com.zs.utils.CommonUtils;
 import com.zs.utils.LoggerUtil;
 import io.appium.java_client.ios.IOSDriver;
@@ -10,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+
+import static com.zs.locators.VijethaLocators.getLoginLocator;
 
 /**
  * Class which contains all the functions which perform operation in Login Page
@@ -58,6 +59,16 @@ public class LoginPage {
     }
 
     /**
+     * Function used to click LoginWithPassword Button for Vijetha
+     */
+
+    public void clickLoginWithPassword(){
+        By loginWithPasswordLoc = getLoginLocator("logInWithPassword");
+        WebElement loginWithPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(loginWithPasswordLoc));
+        loginWithPassword.click();
+    }
+
+    /**
      * Function used to Enter Password in the "Enter password" text box
      * @param appName takes appName as the parameter and decides on which particular application enterPassword function should be executed
      * @param password takes String password as the parameter which contains password that is entered in the "Enter password" text box
@@ -89,8 +100,8 @@ public class LoginPage {
 
     public static void handlePopUp(String appName){
         int loop = switch (appName) {
-            case "Tamimi" -> 3;
-            case "Vijetha" -> 2;
+            case Constants.TAMIMI -> 3;
+            case Constants.VIJETHA -> 2;
             default -> -1;
         };
         for(int i=0; i<loop; i++) {
@@ -112,11 +123,10 @@ public class LoginPage {
     public void loginFlow(String password, String username, String appName){
         LoggerUtil.logInfo("Login Test Case Started for " + appName);
         LoginPage loginPage =new LoginPage(driver, wait);
-        LoginPageVijetha loginPageVijetha =new LoginPageVijetha(wait);
         loginPage.clickOnProfileIcon(appName);
         LoggerUtil.logInfo("Profile Icon Clicked");
-        if(appName.equals("Vijetha")){
-            loginPageVijetha.clickLoginWithPassword();
+        if(appName.equals(Constants.VIJETHA)){
+            loginPage.clickLoginWithPassword();
             LoggerUtil.logInfo("Login with PassWord clicked");
 
         }

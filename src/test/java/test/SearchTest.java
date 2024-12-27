@@ -31,4 +31,19 @@ public class SearchTest extends BaseTest{
         assertTrue(searchPage.verifyGeneralProduct(appName));
     }
 
+    /**
+     * Function searchSpecificProduct use to run Search a Specific Product Test Case
+     * @param appName takes appName as the parameter and decides on which particular application searchSpecificProduct function should be executed
+     */
+
+    @Test
+    @Parameters("appName")
+    public void searchSpecificProduct(@Optional String appName) {
+        LoggerUtil.setExtentTest(ExtentReport.getTest());
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        SearchPage searchPage = new SearchPage(driver, wait);
+        searchPage.productSearchFlow(appName);
+        assertTrue(searchPage.verifyProduct(appName));
+    }
+
 }

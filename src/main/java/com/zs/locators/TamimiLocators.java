@@ -87,6 +87,8 @@ public class TamimiLocators {
          * Cart page locators for Tamimi
          */
         cartPageLocators.put("BackButton", By.xpath("//XCUIElementTypeButton[@name='chevron.left']"));
+        cartPageLocators.put("OkayButton", By.xpath("//XCUIElementTypeButton[@name='Okay']"));
+
 
         /**
          * Order page locators for Tamimi

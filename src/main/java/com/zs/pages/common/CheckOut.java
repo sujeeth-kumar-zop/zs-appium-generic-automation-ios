@@ -169,8 +169,6 @@ public class CheckOut {
     public void checkOutFlowDebitCard(String appName) {
         LoggerUtil.logInfo("Check Out Using Debit Card Test Case Started for " + appName);
         CheckOut checkOut = new CheckOut(driver, wait);
-        checkOut.clickSelectSubstitutionBtn(appName);
-        LoggerUtil.logInfo("Selection for Substitution Completed");
         checkOut.clickCheckOutBtn(appName);
         LoggerUtil.logInfo("Check Out Button Clicked");
         checkOut.scrollToEnd();
@@ -189,6 +187,8 @@ public class CheckOut {
     public void checkOutFlowCOD(String appName) {
         LoggerUtil.logInfo("Check Out using COD Test Case Started for " + appName);
         CheckOut checkOut = new CheckOut(driver, wait);
+        checkOut.clickSelectSubstitutionBtn(appName);
+        LoggerUtil.logInfo("Selection for Substitution Completed");
         checkOut.clickCheckOutBtn(appName);
         LoggerUtil.logInfo("Check Out Button Clicked");
         checkOut.scrollToEnd();
